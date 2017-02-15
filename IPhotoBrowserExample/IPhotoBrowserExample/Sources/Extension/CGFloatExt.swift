@@ -2,7 +2,7 @@
 //  CGFloatExt.swift
 //  IPhotoBrowserExample
 //
-//  Created by yoshida hiroyuki on 2017/02/15.
+//  Created by hryk224 on 2017/02/15.
 //  Copyright © 2017年 hryk224. All rights reserved.
 //
 

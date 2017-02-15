@@ -1,13 +1,15 @@
-# InfiniteCollectionView
+# IPhotoBrowser
 
-Infinite horizontal scrolling using `UICollectionView`
+A simple iOS Instagram photo browser written in Swift.
 
-[![CocoaPods Compatible](http://img.shields.io/cocoapods/v/InfiniteCollectionView.svg?style=flat)](http://cocoadocs.org/docsets/InfiniteCollectionView)
-[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+<!--[![CocoaPods Compatible](http://img.shields.io/cocoapods/v/IPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/IPhotoBrowser)
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)-->
 
-<img src="https://github.com/hryk224/InfiniteCollectionView/wiki/images/sample1.gif" width="320" >
+<img src="https://github.com/hryk224/IPhotoBrowser/wiki/images/sample1.gif" width="320" >
 
-<img src="https://github.com/hryk224/InfiniteCollectionView/wiki/images/sample2.gif" width="320" >
+<img src="https://github.com/hryk224/IPhotoBrowser/wiki/images/sample2.gif" width="320" >
+
+<img src="https://github.com/hryk224/IPhotoBrowser/wiki/images/sample3.gif" width="320" >
 
 ## Requirements
 - iOS 8.0+
@@ -22,13 +24,13 @@ Adding the following to your `Podfile` and running `pod install`:
 
 ```Ruby
 use_frameworks!
-pod "InfiniteCollectionView"
+pod 'IPhotoBrowser'
 ```
 
 ### import
 
 ```Swift
-import InfiniteCollectionView
+import IPhotoBrowser
 ```
 
 ## Usage
@@ -36,24 +38,40 @@ import InfiniteCollectionView
 #### initialize
 
 ```Swift
-@IBOutlet weak var collectionView: InfiniteCollectionView!
+convenience init(images: [UIImage], start index:Int)
+convenience init(imageUrls: [URL], start index:Int)
+convenience init(assets: [PHAsset], start index:Int)
 ```
 
-#### delegate, dataSource
+#### IPhotoBrowserDelegate
 
 ```Swift
-collectionView.infiniteDataSource = XXX
-collectionView.infiniteDelegate = XXX
+func iPhotoBrowser(_ iPhotoBrowser: IPhotoBrowser, didChange index: Int)
+@objc optional func iPhotoBrowserDidDismissing(_ iPhotoBrowser: IPhotoBrowser)
+@objc optional func iPhotoBrowserDidCanceledDismiss(_ iPhotoBrowser: IPhotoBrowser)
+@objc optional func iPhotoBrowserDidPop(_ iPhotoBrowser: IPhotoBrowser)
+@objc optional func iPhotoBrowserDidCanceledPop(_ iPhotoBrowser: IPhotoBrowser)
+@objc optional func iPhotoBrowserMakePreviousViewScreenshot(_ iPhotoBrowser: IPhotoBrowser) -> UIImage?
 ```
 
-```Swift
-// protocol
-func number(ofItems collectionView: UICollectionView) -> Int
-func collectionView(_ collectionView: UICollectionView, dequeueForItemAt dequeueIndexPath: IndexPath, cellForItemAt usableIndexPath: IndexPath) -> UICollectionViewCell
+##### Example
 
-// optional
-func infiniteCollectionView(_ collectionView: UICollectionView, didSelectItemAt usableIndexPath: IndexPath)
-func scrollView(_ scrollView: UIScrollView, pageIndex: Int)
+```Swift
+let photoBrowser = IPhotoBrowser(images: images.objects, start: indexPath.item)
+photoBrowser.delegate = self
+navigationController?.pushViewController(photoBrowser, animated: true)
+or
+present(photoBrowser, animated: true, completion: nil)
+```
+
+#### IPhotoBrowserAnimatedTransitionProtocol
+
+```Swift
+var iPhotoBrowserSelectedImageViewCopy: UIImageView? { get }
+var iPhotoBrowserDestinationImageViewSize: CGSize? { get }
+var iPhotoBrowserDestinationImageViewCenter: CGPoint? { get }
+func iPhotoBrowserTransitionWillBegin()
+func iPhotoBrowserTransitionDidEnded()
 ```
 
 ## Photos from

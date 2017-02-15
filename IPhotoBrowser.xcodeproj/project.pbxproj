@@ -7,90 +7,178 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED4D48171E5413FC0027707D /* IPhotoBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = ED4D48161E5413FC0027707D /* IPhotoBrowser.h */; };
-		ED4D481A1E5414070027707D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED4D48191E5414070027707D /* Info.plist */; };
+		935281951E5CACB4006481EA /* IPhotoBrowserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281941E5CACB4006481EA /* IPhotoBrowserCollectionViewCell.swift */; };
+		935281971E5CACC6006481EA /* IPhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281961E5CACC6006481EA /* IPhotoBrowserDelegate.swift */; };
+		935281991E5CACCE006481EA /* IPhotoBrowserAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281981E5CACCE006481EA /* IPhotoBrowserAnimatedTransition.swift */; };
+		9352819D1E5CACE2006481EA /* IPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352819A1E5CACE2006481EA /* IPhotoBrowser.swift */; };
+		9352819E1E5CACE2006481EA /* IPhotoBrowserCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352819B1E5CACE2006481EA /* IPhotoBrowserCollectionViewFlowLayout.swift */; };
+		9352819F1E5CACE2006481EA /* IPhotoBrowserNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352819C1E5CACE2006481EA /* IPhotoBrowserNavigationController.swift */; };
+		935281A31E5CACFC006481EA /* PHAsset+IPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281A01E5CACFC006481EA /* PHAsset+IPhotoBrowser.swift */; };
+		935281A41E5CACFC006481EA /* UIImageView+IPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281A11E5CACFC006481EA /* UIImageView+IPhotoBrowser.swift */; };
+		935281A51E5CACFC006481EA /* UIView+IPhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281A21E5CACFC006481EA /* UIView+IPhotoBrowser.swift */; };
+		935281A71E5CAD0A006481EA /* IPhotoWebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935281A61E5CAD0A006481EA /* IPhotoWebImageCache.swift */; };
+		OBJ_29 /* IPhotoBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* IPhotoBrowserTests.swift */; };
+		OBJ_31 /* IPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* IPhotoBrowser.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		930325281E563E9000A6B9A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_17;
+			remoteInfo = IPhotoBrowser;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		ED4D48161E5413FC0027707D /* IPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPhotoBrowser.h; path = Sources/IPhotoBrowser.h; sourceTree = SOURCE_ROOT; };
-		ED4D48191E5414070027707D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
-		EDD75E441E5413A9007C4876 /* IPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		935281811E5CAA4F006481EA /* IPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPhotoBrowser.h; sourceTree = "<group>"; };
+		935281941E5CACB4006481EA /* IPhotoBrowserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserCollectionViewCell.swift; sourceTree = "<group>"; };
+		935281961E5CACC6006481EA /* IPhotoBrowserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserDelegate.swift; sourceTree = "<group>"; };
+		935281981E5CACCE006481EA /* IPhotoBrowserAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserAnimatedTransition.swift; sourceTree = "<group>"; };
+		9352819A1E5CACE2006481EA /* IPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowser.swift; sourceTree = "<group>"; };
+		9352819B1E5CACE2006481EA /* IPhotoBrowserCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		9352819C1E5CACE2006481EA /* IPhotoBrowserNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserNavigationController.swift; sourceTree = "<group>"; };
+		935281A01E5CACFC006481EA /* PHAsset+IPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHAsset+IPhotoBrowser.swift"; sourceTree = "<group>"; };
+		935281A11E5CACFC006481EA /* UIImageView+IPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+IPhotoBrowser.swift"; sourceTree = "<group>"; };
+		935281A21E5CACFC006481EA /* UIView+IPhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IPhotoBrowser.swift"; sourceTree = "<group>"; };
+		935281A61E5CAD0A006481EA /* IPhotoWebImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhotoWebImageCache.swift; sourceTree = "<group>"; };
+		OBJ_12 /* IPhotoBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhotoBrowserTests.swift; sourceTree = "<group>"; };
+		OBJ_15 /* IPhotoBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IPhotoBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_16 /* IPhotoBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = IPhotoBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EDD75E401E5413A9007C4876 /* Frameworks */ = {
+		OBJ_23 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_31 /* IPhotoBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED4D48151E5413F60027707D /* Sources */ = {
+		930325291E563EAD00A6B9A2 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				ED4D48161E5413FC0027707D /* IPhotoBrowser.h */,
+				935281941E5CACB4006481EA /* IPhotoBrowserCollectionViewCell.swift */,
 			);
-			name = Sources;
+			name = CollectionViewCell;
 			sourceTree = "<group>";
 		};
-		ED4D48181E5414010027707D /* Resources */ = {
+		9303252C1E563EBF00A6B9A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ED4D48191E5414070027707D /* Info.plist */,
+				937FFC801E573F470061ECC1 /* Protocol */,
+				937FFC7C1E5734270061ECC1 /* Transitions */,
+				9352819A1E5CACE2006481EA /* IPhotoBrowser.swift */,
+				9352819B1E5CACE2006481EA /* IPhotoBrowserCollectionViewFlowLayout.swift */,
+				9352819C1E5CACE2006481EA /* IPhotoBrowserNavigationController.swift */,
 			);
-			name = Resources;
+			name = Controller;
 			sourceTree = "<group>";
 		};
-		EDD75E3A1E5413A9007C4876 = {
+		930325351E563ECC00A6B9A2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				EDD75E461E5413A9007C4876 /* IPhotoBrowser */,
-				EDD75E451E5413A9007C4876 /* Products */,
+				935281A01E5CACFC006481EA /* PHAsset+IPhotoBrowser.swift */,
+				935281A11E5CACFC006481EA /* UIImageView+IPhotoBrowser.swift */,
+				935281A21E5CACFC006481EA /* UIView+IPhotoBrowser.swift */,
 			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
-		EDD75E451E5413A9007C4876 /* Products */ = {
+		930325381E563EDF00A6B9A2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				EDD75E441E5413A9007C4876 /* IPhotoBrowser.framework */,
+				935281A61E5CAD0A006481EA /* IPhotoWebImageCache.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		937FFC7C1E5734270061ECC1 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				935281981E5CACCE006481EA /* IPhotoBrowserAnimatedTransition.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
+		937FFC801E573F470061ECC1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				935281961E5CACC6006481EA /* IPhotoBrowserDelegate.swift */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* IPhotoBrowserTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		OBJ_11 /* IPhotoBrowserTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* IPhotoBrowserTests.swift */,
+			);
+			name = IPhotoBrowserTests;
+			path = Tests/IPhotoBrowserTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_15 /* IPhotoBrowser.framework */,
+				OBJ_16 /* IPhotoBrowserTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EDD75E461E5413A9007C4876 /* IPhotoBrowser */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				ED4D48181E5414010027707D /* Resources */,
-				ED4D48151E5413F60027707D /* Sources */,
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_10 /* Tests */,
+				OBJ_14 /* Products */,
 			);
-			path = IPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				930325291E563EAD00A6B9A2 /* CollectionViewCell */,
+				9303252C1E563EBF00A6B9A2 /* Controller */,
+				930325351E563ECC00A6B9A2 /* Extension */,
+				930325381E563EDF00A6B9A2 /* Utility */,
+				935281811E5CAA4F006481EA /* IPhotoBrowser.h */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		EDD75E411E5413A9007C4876 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ED4D48171E5413FC0027707D /* IPhotoBrowser.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		EDD75E431E5413A9007C4876 /* IPhotoBrowser */ = {
+		OBJ_17 /* IPhotoBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EDD75E4C1E5413A9007C4876 /* Build configuration list for PBXNativeTarget "IPhotoBrowser" */;
+			buildConfigurationList = OBJ_18 /* Build configuration list for PBXNativeTarget "IPhotoBrowser" */;
 			buildPhases = (
-				EDD75E3F1E5413A9007C4876 /* Sources */,
-				EDD75E401E5413A9007C4876 /* Frameworks */,
-				EDD75E411E5413A9007C4876 /* Headers */,
-				EDD75E421E5413A9007C4876 /* Resources */,
+				OBJ_21 /* Sources */,
+				OBJ_23 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -98,220 +186,252 @@
 			);
 			name = IPhotoBrowser;
 			productName = IPhotoBrowser;
-			productReference = EDD75E441E5413A9007C4876 /* IPhotoBrowser.framework */;
+			productReference = OBJ_15 /* IPhotoBrowser.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		OBJ_24 /* IPhotoBrowserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_25 /* Build configuration list for PBXNativeTarget "IPhotoBrowserTests" */;
+			buildPhases = (
+				OBJ_28 /* Sources */,
+				OBJ_30 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_32 /* PBXTargetDependency */,
+			);
+			name = IPhotoBrowserTests;
+			productName = IPhotoBrowserTests;
+			productReference = OBJ_16 /* IPhotoBrowserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EDD75E3B1E5413A9007C4876 /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = hryk224;
+				LastUpgradeCheck = 9999;
 				TargetAttributes = {
-					EDD75E431E5413A9007C4876 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+					OBJ_17 = {
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
-			buildConfigurationList = EDD75E3E1E5413A9007C4876 /* Build configuration list for PBXProject "IPhotoBrowser" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "IPhotoBrowser" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = EDD75E3A1E5413A9007C4876;
-			productRefGroup = EDD75E451E5413A9007C4876 /* Products */;
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EDD75E431E5413A9007C4876 /* IPhotoBrowser */,
+				OBJ_17 /* IPhotoBrowser */,
+				OBJ_24 /* IPhotoBrowserTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		EDD75E421E5413A9007C4876 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
 			files = (
-				ED4D481A1E5414070027707D /* Info.plist in Resources */,
+				9352819D1E5CACE2006481EA /* IPhotoBrowser.swift in Sources */,
+				935281991E5CACCE006481EA /* IPhotoBrowserAnimatedTransition.swift in Sources */,
+				935281951E5CACB4006481EA /* IPhotoBrowserCollectionViewCell.swift in Sources */,
+				9352819E1E5CACE2006481EA /* IPhotoBrowserCollectionViewFlowLayout.swift in Sources */,
+				935281971E5CACC6006481EA /* IPhotoBrowserDelegate.swift in Sources */,
+				9352819F1E5CACE2006481EA /* IPhotoBrowserNavigationController.swift in Sources */,
+				935281A71E5CAD0A006481EA /* IPhotoWebImageCache.swift in Sources */,
+				935281A31E5CACFC006481EA /* PHAsset+IPhotoBrowser.swift in Sources */,
+				935281A41E5CACFC006481EA /* UIImageView+IPhotoBrowser.swift in Sources */,
+				935281A51E5CACFC006481EA /* UIView+IPhotoBrowser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		EDD75E3F1E5413A9007C4876 /* Sources */ = {
+		OBJ_28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
+				OBJ_29 /* IPhotoBrowserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		OBJ_32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_17 /* IPhotoBrowser */;
+			targetProxy = 930325281E563E9000A6B9A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		EDD75E4A1E5413A9007C4876 /* Debug */ = {
+		OBJ_19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = IPhotoBrowser.xcodeproj/IPhotoBrowser_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = IPhotoBrowser;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				SWIFT_VERSION = 3.0;
+				TARGET_NAME = IPhotoBrowser;
 			};
 			name = Debug;
 		};
-		EDD75E4B1E5413A9007C4876 /* Release */ = {
+		OBJ_20 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				DEFINES_MODULE = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = IPhotoBrowser.xcodeproj/IPhotoBrowser_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = IPhotoBrowser;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+				TARGET_NAME = IPhotoBrowser;
 			};
 			name = Release;
 		};
-		EDD75E4D1E5413A9007C4876 /* Debug */ = {
+		OBJ_26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.hryk224.IPhotoBrowser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = IPhotoBrowser.xcodeproj/IPhotoBrowserTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = IPhotoBrowserTests;
 			};
 			name = Debug;
 		};
-		EDD75E4E1E5413A9007C4876 /* Release */ = {
+		OBJ_27 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = IPhotoBrowser.xcodeproj/IPhotoBrowserTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = IPhotoBrowserTests;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.hryk224.IPhotoBrowser;
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EDD75E3E1E5413A9007C4876 /* Build configuration list for PBXProject "IPhotoBrowser" */ = {
+		OBJ_18 /* Build configuration list for PBXNativeTarget "IPhotoBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDD75E4A1E5413A9007C4876 /* Debug */,
-				EDD75E4B1E5413A9007C4876 /* Release */,
+				OBJ_19 /* Debug */,
+				OBJ_20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		EDD75E4C1E5413A9007C4876 /* Build configuration list for PBXNativeTarget "IPhotoBrowser" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "IPhotoBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EDD75E4D1E5413A9007C4876 /* Debug */,
-				EDD75E4E1E5413A9007C4876 /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_25 /* Build configuration list for PBXNativeTarget "IPhotoBrowserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_26 /* Debug */,
+				OBJ_27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EDD75E3B1E5413A9007C4876 /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }

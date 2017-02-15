@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pnd-rs-ce0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera Roll View Controller-->
+        <scene sceneID="0YN-e3-pKs">
+            <objects>
+                <viewController id="Pnd-rs-ce0" customClass="CameraRollViewController" customModule="IPhotoBrowserExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="moS-MU-fxP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gq3-cD-GO3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gMa-VR-aGr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ocw-gR-3az">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="U1m-xt-ykk">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Pnd-rs-ce0" id="mdB-jK-JdC"/>
+                                    <outlet property="delegate" destination="Pnd-rs-ce0" id="ah0-km-2eR"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gq3-cD-GO3" firstAttribute="top" secondItem="Ocw-gR-3az" secondAttribute="bottom" id="2aL-qD-eH8"/>
+                            <constraint firstItem="Ocw-gR-3az" firstAttribute="top" secondItem="gMa-VR-aGr" secondAttribute="top" id="O0P-Cx-mtc"/>
+                            <constraint firstItem="Ocw-gR-3az" firstAttribute="leading" secondItem="gMa-VR-aGr" secondAttribute="leading" id="sCQ-sn-bfi"/>
+                            <constraint firstAttribute="trailing" secondItem="Ocw-gR-3az" secondAttribute="trailing" id="yEJ-Rw-6I1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Ocw-gR-3az" id="yec-1M-beq"/>
+                        <outlet property="layout" destination="U1m-xt-ykk" id="MjM-Et-5Gd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1N-sb-xpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="22" y="22"/>
+        </scene>
+    </scenes>
+</document>

@@ -7,46 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		937FFC781E57321D0061ECC1 /* HorizontalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937FFC771E57321D0061ECC1 /* HorizontalViewController.swift */; };
+		937FFC7A1E57323C0061ECC1 /* HorizontalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937FFC791E57323C0061ECC1 /* HorizontalViewController.storyboard */; };
+		ED2A2E531E5A7FF900F1A8B0 /* PH.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A2E501E5A7FF900F1A8B0 /* PH.swift */; };
+		ED2A2E541E5A7FF900F1A8B0 /* PHPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A2E511E5A7FF900F1A8B0 /* PHPhoto.swift */; };
+		ED2A2E551E5A7FF900F1A8B0 /* PHUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2A2E521E5A7FF900F1A8B0 /* PHUtility.swift */; };
 		ED4D483D1E54146C0027707D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED4D483B1E54146C0027707D /* Assets.xcassets */; };
-		ED4D483E1E54146C0027707D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED4D483C1E54146C0027707D /* Info.plist */; };
 		ED4D48421E5414760027707D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D483F1E5414760027707D /* AppDelegate.swift */; };
 		ED4D48431E5414760027707D /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D48401E5414760027707D /* Assets.swift */; };
 		ED4D48441E5414760027707D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4D48411E5414760027707D /* LaunchScreen.storyboard */; };
 		ED4D48491E5414870027707D /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4D48471E5414870027707D /* MainViewController.storyboard */; };
 		ED4D484A1E5414870027707D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D48481E5414870027707D /* MainViewController.swift */; };
-		ED4D48521E5415200027707D /* IPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4D48511E54151D0027707D /* IPhotoBrowser.framework */; };
-		ED4D48531E5415200027707D /* IPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED4D48511E54151D0027707D /* IPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED4D485C1E5417D00027707D /* InAppImageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4D485B1E5417D00027707D /* InAppImageViewController.storyboard */; };
 		ED4D485E1E5417E70027707D /* InAppImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D485D1E5417E70027707D /* InAppImageViewController.swift */; };
 		ED4D48621E541AF60027707D /* CGFloatExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D48611E541AF60027707D /* CGFloatExt.swift */; };
 		ED4D48641E541B4B0027707D /* IntExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D48631E541B4B0027707D /* IntExt.swift */; };
+		ED4D486C1E5427890027707D /* CameraRollViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED4D486A1E5427890027707D /* CameraRollViewController.storyboard */; };
+		ED4D486D1E5427890027707D /* CameraRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D486B1E5427890027707D /* CameraRollViewController.swift */; };
+		ED4D48751E542F110027707D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED4D48741E542F110027707D /* Photos.framework */; };
+		ED4D487E1E543F560027707D /* AssetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4D487C1E543F560027707D /* AssetCollectionViewCell.swift */; };
+		ED4D487F1E543F560027707D /* AssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4D487D1E543F560027707D /* AssetCollectionViewCell.xib */; };
+		ED6A0C891E55524D00582780 /* IPhotoBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6A0C881E55524100582780 /* IPhotoBrowser.framework */; };
+		ED6A0C8A1E55524D00582780 /* IPhotoBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ED6A0C881E55524100582780 /* IPhotoBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED6A0C911E55585500582780 /* ImageUrlViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED6A0C8F1E55585500582780 /* ImageUrlViewController.storyboard */; };
+		ED6A0C921E55585500582780 /* ImageUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A0C901E55585500582780 /* ImageUrlViewController.swift */; };
+		ED6A0C971E5559AC00582780 /* WebImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A0C951E5559AC00582780 /* WebImageTableViewCell.swift */; };
+		ED6A0C981E5559AC00582780 /* WebImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6A0C961E5559AC00582780 /* WebImageTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ED4D48501E54151D0027707D /* PBXContainerItemProxy */ = {
+		9303253D1E563F4800A6B9A2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ED4D484C1E54151D0027707D /* IPhotoBrowser.xcodeproj */;
+			containerPortal = ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EDD75E441E5413A9007C4876;
+			remoteGlobalIDString = OBJ_16;
+			remoteInfo = IPhotoBrowserTests;
+		};
+		ED6A0C871E55524100582780 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ED6A0C751E5551D400582780;
 			remoteInfo = IPhotoBrowser;
 		};
-		ED4D48541E5415200027707D /* PBXContainerItemProxy */ = {
+		ED6A0C8B1E55524D00582780 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ED4D484C1E54151D0027707D /* IPhotoBrowser.xcodeproj */;
+			containerPortal = ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = EDD75E431E5413A9007C4876;
+			remoteGlobalIDString = OBJ_17;
 			remoteInfo = IPhotoBrowser;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ED4D48561E5415200027707D /* Embed Frameworks */ = {
+		ED6A0C8D1E55524D00582780 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ED4D48531E5415200027707D /* IPhotoBrowser.framework in Embed Frameworks */,
+				ED6A0C8A1E55524D00582780 /* IPhotoBrowser.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +74,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		937FFC771E57321D0061ECC1 /* HorizontalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalViewController.swift; path = Sources/View/Controller/Horizontal/HorizontalViewController.swift; sourceTree = "<group>"; };
+		937FFC791E57323C0061ECC1 /* HorizontalViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = HorizontalViewController.storyboard; path = Sources/View/Controller/Horizontal/HorizontalViewController.storyboard; sourceTree = "<group>"; };
+		ED2A2E501E5A7FF900F1A8B0 /* PH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PH.swift; path = Sources/Utility/PH.swift; sourceTree = "<group>"; };
+		ED2A2E511E5A7FF900F1A8B0 /* PHPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PHPhoto.swift; path = Sources/Utility/PHPhoto.swift; sourceTree = "<group>"; };
+		ED2A2E521E5A7FF900F1A8B0 /* PHUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PHUtility.swift; path = Sources/Utility/PHUtility.swift; sourceTree = "<group>"; };
 		ED4D48241E5414210027707D /* IPhotoBrowserExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPhotoBrowserExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4D483B1E54146C0027707D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		ED4D483C1E54146C0027707D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
@@ -62,11 +87,20 @@
 		ED4D48411E5414760027707D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Sources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED4D48471E5414870027707D /* MainViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainViewController.storyboard; path = Sources/View/Controller/MainViewController.storyboard; sourceTree = "<group>"; };
 		ED4D48481E5414870027707D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Sources/View/Controller/MainViewController.swift; sourceTree = "<group>"; };
-		ED4D484C1E54151D0027707D /* IPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IPhotoBrowser.xcodeproj; path = ../IPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
 		ED4D485B1E5417D00027707D /* InAppImageViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = InAppImageViewController.storyboard; path = Sources/View/Controller/InAppImage/InAppImageViewController.storyboard; sourceTree = "<group>"; };
 		ED4D485D1E5417E70027707D /* InAppImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InAppImageViewController.swift; path = Sources/View/Controller/InAppImage/InAppImageViewController.swift; sourceTree = "<group>"; };
 		ED4D48611E541AF60027707D /* CGFloatExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGFloatExt.swift; path = Sources/Extension/CGFloatExt.swift; sourceTree = "<group>"; };
 		ED4D48631E541B4B0027707D /* IntExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntExt.swift; path = Sources/Extension/IntExt.swift; sourceTree = "<group>"; };
+		ED4D486A1E5427890027707D /* CameraRollViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CameraRollViewController.storyboard; path = Sources/View/Controller/CameraRoll/CameraRollViewController.storyboard; sourceTree = "<group>"; };
+		ED4D486B1E5427890027707D /* CameraRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraRollViewController.swift; path = Sources/View/Controller/CameraRoll/CameraRollViewController.swift; sourceTree = "<group>"; };
+		ED4D48741E542F110027707D /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		ED4D487C1E543F560027707D /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetCollectionViewCell.swift; path = Sources/View/CollectionViewCell/AssetCollectionViewCell.swift; sourceTree = "<group>"; };
+		ED4D487D1E543F560027707D /* AssetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssetCollectionViewCell.xib; path = Sources/View/CollectionViewCell/AssetCollectionViewCell.xib; sourceTree = "<group>"; };
+		ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IPhotoBrowser.xcodeproj; path = ../IPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
+		ED6A0C8F1E55585500582780 /* ImageUrlViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ImageUrlViewController.storyboard; path = Sources/View/Controller/Table/ImageUrlViewController.storyboard; sourceTree = "<group>"; };
+		ED6A0C901E55585500582780 /* ImageUrlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageUrlViewController.swift; path = Sources/View/Controller/Table/ImageUrlViewController.swift; sourceTree = "<group>"; };
+		ED6A0C951E5559AC00582780 /* WebImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebImageTableViewCell.swift; path = Sources/View/TableViewCell/WebImageTableViewCell.swift; sourceTree = "<group>"; };
+		ED6A0C961E5559AC00582780 /* WebImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebImageTableViewCell.xib; path = Sources/View/TableViewCell/WebImageTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,13 +108,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED4D48521E5415200027707D /* IPhotoBrowser.framework in Frameworks */,
+				ED6A0C891E55524D00582780 /* IPhotoBrowser.framework in Frameworks */,
+				ED4D48751E542F110027707D /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		937FFC751E5731F50061ECC1 /* Horizontal */ = {
+			isa = PBXGroup;
+			children = (
+				937FFC791E57323C0061ECC1 /* HorizontalViewController.storyboard */,
+				937FFC771E57321D0061ECC1 /* HorizontalViewController.swift */,
+			);
+			name = Horizontal;
+			sourceTree = "<group>";
+		};
+		ED2A2E4F1E5A7FF200F1A8B0 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				ED2A2E501E5A7FF900F1A8B0 /* PH.swift */,
+				ED2A2E511E5A7FF900F1A8B0 /* PHPhoto.swift */,
+				ED2A2E521E5A7FF900F1A8B0 /* PHUtility.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		ED49A26D1E5540AC00A59691 /* ImageUrl */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A0C8F1E55585500582780 /* ImageUrlViewController.storyboard */,
+				ED6A0C901E55585500582780 /* ImageUrlViewController.swift */,
+			);
+			name = ImageUrl;
+			sourceTree = "<group>";
+		};
 		ED4D481B1E5414210027707D = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				ED4D48601E541AD20027707D /* Extension */,
+				ED2A2E4F1E5A7FF200F1A8B0 /* Utility */,
 				ED4D48451E5414790027707D /* View */,
 				ED4D483F1E5414760027707D /* AppDelegate.swift */,
 				ED4D48401E5414760027707D /* Assets.swift */,
@@ -131,7 +195,9 @@
 		ED4D48451E5414790027707D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ED4D487B1E543F320027707D /* CollectionViewCell */,
 				ED4D48461E5414800027707D /* Controller */,
+				ED6A0C941E55598600582780 /* TableViewCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -139,6 +205,9 @@
 		ED4D48461E5414800027707D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ED4D48691E5427470027707D /* CameraRoll */,
+				937FFC751E5731F50061ECC1 /* Horizontal */,
+				ED49A26D1E5540AC00A59691 /* ImageUrl */,
 				ED4D485A1E5417BA0027707D /* InAppImage */,
 				ED4D48471E5414870027707D /* MainViewController.storyboard */,
 				ED4D48481E5414870027707D /* MainViewController.swift */,
@@ -149,17 +218,10 @@
 		ED4D484B1E54151D0027707D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED4D484C1E54151D0027707D /* IPhotoBrowser.xcodeproj */,
+				ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */,
+				ED4D48741E542F110027707D /* Photos.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		ED4D484D1E54151D0027707D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ED4D48511E54151D0027707D /* IPhotoBrowser.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		ED4D485A1E5417BA0027707D /* InAppImage */ = {
@@ -180,6 +242,42 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
+		ED4D48691E5427470027707D /* CameraRoll */ = {
+			isa = PBXGroup;
+			children = (
+				ED4D486A1E5427890027707D /* CameraRollViewController.storyboard */,
+				ED4D486B1E5427890027707D /* CameraRollViewController.swift */,
+			);
+			name = CameraRoll;
+			sourceTree = "<group>";
+		};
+		ED4D487B1E543F320027707D /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ED4D487C1E543F560027707D /* AssetCollectionViewCell.swift */,
+				ED4D487D1E543F560027707D /* AssetCollectionViewCell.xib */,
+			);
+			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		ED6A0C841E55524100582780 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A0C881E55524100582780 /* IPhotoBrowser.framework */,
+				9303253E1E563F4800A6B9A2 /* IPhotoBrowserTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED6A0C941E55598600582780 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A0C951E5559AC00582780 /* WebImageTableViewCell.swift */,
+				ED6A0C961E5559AC00582780 /* WebImageTableViewCell.xib */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,12 +288,12 @@
 				ED4D48201E5414210027707D /* Sources */,
 				ED4D48211E5414210027707D /* Frameworks */,
 				ED4D48221E5414210027707D /* Resources */,
-				ED4D48561E5415200027707D /* Embed Frameworks */,
+				ED6A0C8D1E55524D00582780 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				ED4D48551E5415200027707D /* PBXTargetDependency */,
+				ED6A0C8C1E55524D00582780 /* PBXTargetDependency */,
 			);
 			name = IPhotoBrowserExample;
 			productName = IPhotoBrowserExample;
@@ -232,8 +330,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = ED4D484D1E54151D0027707D /* Products */;
-					ProjectRef = ED4D484C1E54151D0027707D /* IPhotoBrowser.xcodeproj */;
+					ProductGroup = ED6A0C841E55524100582780 /* Products */;
+					ProjectRef = ED6A0C831E55524100582780 /* IPhotoBrowser.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -244,11 +342,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		ED4D48511E54151D0027707D /* IPhotoBrowser.framework */ = {
+		9303253E1E563F4800A6B9A2 /* IPhotoBrowserTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IPhotoBrowserTests.xctest;
+			remoteRef = 9303253D1E563F4800A6B9A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ED6A0C881E55524100582780 /* IPhotoBrowser.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = IPhotoBrowser.framework;
-			remoteRef = ED4D48501E54151D0027707D /* PBXContainerItemProxy */;
+			remoteRef = ED6A0C871E55524100582780 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -258,11 +363,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4D487F1E543F560027707D /* AssetCollectionViewCell.xib in Resources */,
 				ED4D483D1E54146C0027707D /* Assets.xcassets in Resources */,
+				ED4D486C1E5427890027707D /* CameraRollViewController.storyboard in Resources */,
+				937FFC7A1E57323C0061ECC1 /* HorizontalViewController.storyboard in Resources */,
+				ED6A0C911E55585500582780 /* ImageUrlViewController.storyboard in Resources */,
 				ED4D485C1E5417D00027707D /* InAppImageViewController.storyboard in Resources */,
-				ED4D483E1E54146C0027707D /* Info.plist in Resources */,
 				ED4D48441E5414760027707D /* LaunchScreen.storyboard in Resources */,
 				ED4D48491E5414870027707D /* MainViewController.storyboard in Resources */,
+				ED6A0C981E5559AC00582780 /* WebImageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,21 +383,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4D48421E5414760027707D /* AppDelegate.swift in Sources */,
+				ED4D487E1E543F560027707D /* AssetCollectionViewCell.swift in Sources */,
 				ED4D48431E5414760027707D /* Assets.swift in Sources */,
+				ED4D486D1E5427890027707D /* CameraRollViewController.swift in Sources */,
 				ED4D48621E541AF60027707D /* CGFloatExt.swift in Sources */,
+				937FFC781E57321D0061ECC1 /* HorizontalViewController.swift in Sources */,
+				ED6A0C921E55585500582780 /* ImageUrlViewController.swift in Sources */,
 				ED4D485E1E5417E70027707D /* InAppImageViewController.swift in Sources */,
 				ED4D48641E541B4B0027707D /* IntExt.swift in Sources */,
 				ED4D484A1E5414870027707D /* MainViewController.swift in Sources */,
+				ED2A2E531E5A7FF900F1A8B0 /* PH.swift in Sources */,
+				ED2A2E541E5A7FF900F1A8B0 /* PHPhoto.swift in Sources */,
+				ED2A2E551E5A7FF900F1A8B0 /* PHUtility.swift in Sources */,
+				ED6A0C971E5559AC00582780 /* WebImageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		ED4D48551E5415200027707D /* PBXTargetDependency */ = {
+		ED6A0C8C1E55524D00582780 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = IPhotoBrowser;
-			targetProxy = ED4D48541E5415200027707D /* PBXContainerItemProxy */;
+			targetProxy = ED6A0C8B1E55524D00582780 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -333,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -377,7 +494,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -389,8 +506,8 @@
 		ED4D48371E5414210027707D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/IPhotoBrowserExample/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -404,8 +521,8 @@
 		ED4D48381E5414210027707D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/IPhotoBrowserExample/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

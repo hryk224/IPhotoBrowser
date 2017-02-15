@@ -10,28 +10,29 @@ import UIKit.UIImage
 import UIKit.UIColor
 
 struct Assets {
-    let image = Image()
-    let color = Color()
     struct Image {
         static let share: Assets.Image = Image()
-        fileprivate init() {}
+        let objects: [UIImage]
         private let countableRange: CountableRange<Int> = 0..<36
         var count: Int {
             return countableRange.count
         }
-        var objects: [UIImage] {
-            return countableRange.map { String($0) }.flatMap { UIImage(named: $0) }
+        private init() {
+            objects = countableRange.map { String($0) }.flatMap { UIImage(named: $0) }
         }
     }
-    struct Color {
-        static let share: Assets.Color = Color()
-        let objects: [UIColor]
-        private let countableRange: CountableRange<Int> = 0..<100
+    struct ImageURL {
+        static let share: Assets.ImageURL = ImageURL()
+        let objects: [URL]
+        private let countableRange: CountableRange<Int> = 1..<100
         var count: Int {
             return countableRange.count
         }
-        fileprivate init() {
-            objects = countableRange.map { _ in Void() }.flatMap { UIColor.random }
+        private init() {
+            objects = countableRange
+//                .map { "https://github.com/hryk224/IPhotoBrowser/wiki/images/0" + String($0) + ".jpg" }
+                .map { "https://dummyimage.com/200x200/\(UIColor.random.toHexString)&text=" + String($0) }
+                .flatMap { URL(string: $0) }
         }
     }
 }
@@ -49,5 +50,13 @@ private extension UIColor {
         let g = Int(arc4random_uniform(255))
         let b = Int(arc4random_uniform(255))
         return UIColor(red: r, green: g, blue: b)
+    }
+    var toHexString: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return String(format: "%02X%02X%02X", Int(red * 0xff), Int(green * 0xff), Int(blue * 0xff))
     }
 }

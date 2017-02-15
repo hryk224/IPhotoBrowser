@@ -2,8 +2,8 @@
 //  IPhotoBrowser.h
 //  IPhotoBrowser
 //
-//  Created by yoshida hiroyuki on 2017/02/15.
-//  Copyright © 2017年 hryk224. All rights reserved.
+//  Created by hiroyuki yoshida on 2016/05/11.
+//  Copyright © 2016年 hiroyuki yoshida. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

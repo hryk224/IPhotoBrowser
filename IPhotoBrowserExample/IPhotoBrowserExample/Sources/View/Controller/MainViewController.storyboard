@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +11,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="IPhotoBrowserExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -47,10 +46,10 @@
             </objects>
             <point key="canvasLocation" x="-583.20000000000005" y="-81.409295352323838"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--iPhoto Browser Navigation Controller-->
         <scene sceneID="gML-5M-t5K">
             <objects>
-                <navigationController id="pFK-tX-pZh" sceneMemberID="viewController">
+                <navigationController id="pFK-tX-pZh" customClass="IPhotoBrowserNavigationController" customModule="IPhotoBrowser" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aac-Mg-dB8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
