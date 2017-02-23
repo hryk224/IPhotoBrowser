@@ -15,27 +15,31 @@ class HorizontalViewController: UIViewController {
             collectionView.register(AssetCollectionViewCell.nib, forCellWithReuseIdentifier: AssetCollectionViewCell.identifier)
         }
     }
-    fileprivate var images: Assets.Image {
-        return Assets.Image.share
+    fileprivate var photos: Assets.Photo {
+        return Assets.Photo.share
     }
     static func makeFromStoryboard() -> HorizontalViewController {
         let storyboard = UIStoryboard(name: "HorizontalViewController", bundle: nil)
         return storyboard.instantiateInitialViewController() as! HorizontalViewController
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = MainViewController.Row.horizontal.title
     }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension HorizontalViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return photos.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AssetCollectionViewCell.identifier, for: indexPath) as! AssetCollectionViewCell
-        cell.configure(image: images.objects[indexPath.item])
+        cell.configure(image: photos.objects[indexPath.item].image)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photoBrowser = IPhotoBrowser(images: images.objects, start: indexPath.item)
+        let photoBrowser = IPhotoBrowser(photos: photos.objects, start: indexPath.item)
         photoBrowser.delegate = self
         present(photoBrowser, animated: true, completion: nil)
     }

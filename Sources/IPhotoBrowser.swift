@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 enum IPhotoBrowserSourceType {
-    case image, imageUrl, asset
+    case image, imageUrl, asset, iPhoto
 }
 
 enum SegueType {
@@ -24,19 +24,23 @@ open class IPhotoBrowser: UIViewController {
     public var images: [UIImage] = []
     public var imageUrls: [URL] = []
     public var assets: [PHAsset] = []
+    public var photos: [IPhoto] = []
     public var index: Int = 0 {
         didSet {
             guard index != oldValue else { return }
             delegate?.iPhotoBrowser(self, didChange: index)
-            guard segueType.isPushed else { return }
-            setScreenshot()
+            setTitle()
         }
     }
     public lazy var containerView: UIView = {
         return self.makeContainerView()
     }()
-    public var overlayView: UIView?
-    public var collectionView: UICollectionView! {
+    var overlayView: UIView?
+    var naviBar: UINavigationBar?
+    fileprivate var naviItem: IPhotoNavigationItem? {
+        return naviBar?.topItem as? IPhotoNavigationItem
+    }
+    var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
@@ -54,6 +58,9 @@ open class IPhotoBrowser: UIViewController {
     }
     fileprivate var navigationBarHeight: CGFloat {
         return navigationController?.navigationBar.frame.height ?? 0
+    }
+    fileprivate var collectionViewFlowLayout: UICollectionViewFlowLayout? {
+        return collectionView.collectionViewLayout as? UICollectionViewFlowLayout
     }
     // MARK: -  Initialized
     public required init?(coder aDecoder: NSCoder) {
@@ -89,10 +96,22 @@ open class IPhotoBrowser: UIViewController {
         self.modalPresentationCapturesStatusBarAppearance = true
         self.sourceType = .asset
     }
+    public convenience init(photos: [IPhoto], start index:Int) {
+        self.init(nibName: nil, bundle: nil)
+        self.photos = photos
+        self.index = index
+        self.transitioningDelegate = self
+        self.modalPresentationStyle = .overCurrentContext
+        self.modalPresentationCapturesStatusBarAppearance = true
+        self.sourceType = .iPhoto
+    }
     // Private property
     var segueType: SegueType = .pushed
     fileprivate var sourceType: IPhotoBrowserSourceType = .image
     fileprivate var backgroundColor: UIColor = .black // Default
+    fileprivate var itemColor: UIColor = .white // Default
+    fileprivate var descriptionItemColor: (textColor: UIColor, backgroundColor: UIColor) = (.white, .black)
+    fileprivate var itemViews: [UIView] = []
     open override func loadView() {
         super.loadView()
         view.backgroundColor = .clear
@@ -101,23 +120,61 @@ open class IPhotoBrowser: UIViewController {
         super.viewDidLoad()
         setUp()
     }
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        switch segueType {
+        case .pushed:
+            break
+        case .presented:
+            guard self.naviBar == nil else { return }
+            let navigationBarHeight = UINavigationBar().intrinsicContentSize.height
+            let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: navigationBarHeight + statusBarHeight))
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.backgroundColor = .clear
+            navigationBar.barTintColor = .clear
+            navigationBar.tintColor = itemColor
+            let navigationItem = IPhotoNavigationItem(title: "")
+            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(IPhotoBrowser.dismissAction))
+            navigationItem.leftBarButtonItem = barButtonItem
+            navigationBar.setItems([navigationItem], animated: false)
+            navigationItem.tintColor = itemColor
+            navigationBar.alpha = 0
+            view.addSubview(navigationBar)
+            itemViews.append(navigationBar)
+            self.naviBar = navigationBar
+        }
+        setTitle()
+        showItemViews(true, delay: 0.3)
+    }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard segueType.isPushed else { return }
-        setScreenshot()
+        switch segueType {
+        case .pushed:
+            setScreenshot()
+        case .presented:
+            break
+        }
     }
     // Open property
     open weak var delegate: IPhotoBrowserDelegate?
     open func configure(backgroundColor: UIColor) {
         overlayView?.backgroundColor = backgroundColor
+        descriptionItemColor.backgroundColor = backgroundColor
         self.backgroundColor = backgroundColor
+    }
+    open func configure(itemColor: UIColor) {
+        naviBar?.tintColor = itemColor
+        naviItem?.tintColor = itemColor
+        descriptionItemColor.textColor = itemColor
+        self.itemColor = itemColor
     }
 }
 
 // MARK: - IPhotoBrowserAnimatedTransitionProtocol
 extension IPhotoBrowser: IPhotoBrowserAnimatedTransitionProtocol {
     var currentIndex: Int {
-        return Int(collectionView.contentOffset.x / collectionView.frame.size.width)
+        return Int(round(collectionView.contentOffset.x / collectionView.frame.size.width))
     }
     public var iPhotoBrowserSelectedImageViewCopy: UIImageView? {
         let indexPath = IndexPath(item: currentIndex, section: 0)
@@ -126,19 +183,20 @@ extension IPhotoBrowser: IPhotoBrowserAnimatedTransitionProtocol {
         sourceImageView.contentMode = cell.imageView.contentMode
         sourceImageView.clipsToBounds = true
         sourceImageView.frame = cell.imageView.frame
+        sourceImageView.frame.origin.y += collectionViewFlowLayout?.sectionInset.top ?? 0
         return sourceImageView
     }
     public var iPhotoBrowserDestinationImageViewSize: CGSize? {
         var size = collectionView.bounds.size
-        let minimumLineSpacing: CGFloat = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing ?? 0
+        let minimumLineSpacing: CGFloat = collectionViewFlowLayout?.minimumLineSpacing ?? 0
         size.width -= minimumLineSpacing
         return size
     }
     public var iPhotoBrowserDestinationImageViewCenter: CGPoint? {
-        let minimumLineSpacing: CGFloat = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing ?? 0
+        let minimumLineSpacing: CGFloat = collectionViewFlowLayout?.minimumLineSpacing ?? 0
         var center = collectionView.center
         center.x -= (minimumLineSpacing / 2)
-        guard let sectionInset = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset else {
+        guard let sectionInset = collectionViewFlowLayout?.sectionInset else {
             return center
         }
         center.y += (sectionInset.top / 2)
@@ -162,11 +220,14 @@ extension IPhotoBrowser: UICollectionViewDelegate, UICollectionViewDataSource {
             return imageUrls.count
         case .asset:
             return assets.count
+        case .iPhoto:
+            return photos.count
         }
     }
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IPhotoBrowserCollectionViewCell.identifier, for: indexPath) as! IPhotoBrowserCollectionViewCell
         cell.delegate = self
+        cell.setUp(description: descriptionItemColor.textColor, backgroundColor: descriptionItemColor.backgroundColor)
         switch sourceType {
         case .image:
             cell.configure(image: images[indexPath.item])
@@ -174,27 +235,43 @@ extension IPhotoBrowser: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.configure(imageUrl: imageUrls[indexPath.item], indexPath: indexPath)
         case .asset:
             cell.configure(asset: assets[indexPath.item])
+        case .iPhoto:
+            cell.configure(photo: photos[indexPath.item], indexPath: indexPath)
         }
         return cell
+    }
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard index != currentIndex else { return }
+        index = currentIndex
     }
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         guard index != currentIndex else { return }
         index = currentIndex
+        guard segueType.isPushed else { return }
+        setScreenshot()
     }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard index != currentIndex else { return }
         index = currentIndex
+        guard segueType.isPushed else { return }
+        setScreenshot()
     }
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         guard !decelerate && index != currentIndex else { return }
         index = currentIndex
+        guard segueType.isPushed else { return }
+        setScreenshot()
     }
 }
 
 // MARK: - IPhotoBrowserCollectionViewCellDelegate
 extension IPhotoBrowser: IPhotoBrowserCollectionViewCellDelegate {
+    func cellImageViewWillBeginDragging(_ cell: IPhotoBrowserCollectionViewCell) {
+        setScreenshot()
+    }
     func cellImageViewDidChanging(_ cell: IPhotoBrowserCollectionViewCell) {
         collectionView.isScrollEnabled = false
+        showItemViews(false)
     }
     func cellImageViewDidDragging(_ cell: IPhotoBrowserCollectionViewCell, ratio: CGFloat) {
         overlayView?.alpha = min(1, max(0, (1 - ratio)))
@@ -219,6 +296,7 @@ extension IPhotoBrowser: IPhotoBrowserCollectionViewCellDelegate {
     }
     func cellImageViewDidEndCancelAnimation(_ cell: IPhotoBrowserCollectionViewCell) {
         collectionView.isScrollEnabled = true
+        showItemViews(true)
         switch segueType {
         case .presented:
             delegate?.iPhotoBrowserDidCanceledDismiss?(self)
@@ -228,6 +306,7 @@ extension IPhotoBrowser: IPhotoBrowserCollectionViewCellDelegate {
     }
     func cellImageViewDidZooming(_ cell: IPhotoBrowserCollectionViewCell, isZooming: Bool) {
         navigationItem.hidesBackButton = isZooming
+        showItemViews(!isZooming)
         collectionView.isScrollEnabled = !isZooming
     }
 }
@@ -270,8 +349,16 @@ private extension IPhotoBrowser {
         let layout = IPhotoBrowserCollectionViewFlowLayout()
         var bounds = containerView.bounds
         layout.minimumLineSpacing = 20
-        layout.itemSize = bounds.size
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        if navigationBarHeight > 0 {
+            var size = bounds.size
+            let topInset = navigationBarHeight + statusBarHeight
+            size.height -= topInset
+            layout.itemSize = size
+            layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        } else {
+            layout.itemSize = bounds.size
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
         bounds.size.width += layout.minimumLineSpacing
         let collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
         collectionView.autoresizingMask = self.flexibleAutoresizing
@@ -308,5 +395,28 @@ private extension IPhotoBrowser {
         let sourceVC = navigationController.viewControllers[navigationController.viewControllers.count - 2] as? IPhotoBrowserDelegate
         let image = sourceVC?.iPhotoBrowserMakeViewScreenshotIfNeeded?(self)
         imageView?.image = image
+    }
+    func setTitle() {
+        guard photos.count - 1 >= index else {
+            return
+        }
+        let title = photos[index].title
+        if let _ = navigationController {
+            self.title = title
+        } else if let naviItem = naviItem {
+            naviItem.title = title
+        }
+    }
+    func showItemViews(_ isShown: Bool, delay: TimeInterval = 0.15) {
+        itemViews.filter { $0.alpha != (isShown ? 1 : 0) }.forEach { itemView in
+            let animations: (() -> Void) = {
+                itemView.alpha = isShown ? 1 : 0
+            }
+            UIView.animate(withDuration: 0.15, delay: isShown ? delay : 0, options: .curveEaseInOut, animations: animations, completion: nil)
+        }
+    }
+    dynamic func dismissAction() {
+        showItemViews(false)
+        dismiss(animated: true, completion: nil)
     }
 }

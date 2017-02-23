@@ -13,6 +13,13 @@ final class MainViewController: UIViewController {
     enum Row: Int, CustomStringConvertible {
         case inAppImage = 0, cameraRoll, horizontal, imageUrl
         static var count = 4
+        var title: String {
+            switch self {
+            case .inAppImage, .horizontal: return "In-app"
+            case .cameraRoll: return "Camera"
+            case .imageUrl: return "Imageurl"
+            }
+        }
         var description: String {
             switch self {
             case .inAppImage: return "In-app images"

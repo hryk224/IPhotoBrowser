@@ -22,6 +22,7 @@ final class ImageUrlViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(WebImageTableViewCell.nib, forCellReuseIdentifier: WebImageTableViewCell.identifier)
         tableView.separatorInset = .zero
+        title = MainViewController.Row.imageUrl.title
     }
 }
 

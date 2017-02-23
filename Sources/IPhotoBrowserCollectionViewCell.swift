@@ -10,6 +10,7 @@ import UIKit.UICollectionViewCell
 import Photos
 
 protocol IPhotoBrowserCollectionViewCellDelegate: class {
+    func cellImageViewWillBeginDragging(_ cell: IPhotoBrowserCollectionViewCell)
     func cellImageViewDidChanging(_ cell: IPhotoBrowserCollectionViewCell)
     func cellImageViewDidDragging(_ cell: IPhotoBrowserCollectionViewCell, ratio: CGFloat)
     func cellImageViewDidEndDragging(_ cell: IPhotoBrowserCollectionViewCell, isClosed: Bool)
@@ -52,6 +53,18 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
         return imageView
     }
+    fileprivate(set) lazy var descriptionLabel: UILabel = {
+        return self.makeDescriptionLabel()
+    }()
+    private func makeDescriptionLabel() -> UILabel {
+        let label = PaddingLabel(padding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = false
+        label.alpha = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        itemViews.append(label)
+        return label
+    }
     private var imageSize: CGSize {
         let scale = UIScreen.main.scale
         let screenWidth = UIScreen.main.bounds.width
@@ -69,6 +82,7 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
     }
     fileprivate let panGestureRecognizer = UIPanGestureRecognizer()
     fileprivate var indexPath: IndexPath?
+    fileprivate var itemViews: [UIView] = []
     weak var delegate: IPhotoBrowserCollectionViewCellDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,18 +95,78 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
     }
-    func configure(image: UIImage?) {
-        imageView.image = image
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
     func configure() {
         backgroundColor = .clear
         clipsToBounds = true
         contentView.backgroundColor = .clear
         contentView.clipsToBounds = true
+        addSubviews()
+        addConstraints()
+    }
+    func addSubviews() {
         scrollView.addSubview(imageView)
         contentView.addSubview(scrollView)
+        contentView.addSubview(descriptionLabel)        
+    }
+    func addConstraints() {
+        let bottomConstraint = NSLayoutConstraint(item: descriptionLabel,
+                                                  attribute: .bottom,
+                                                  relatedBy: .equal,
+                                                  toItem: contentView,
+                                                  attribute: .bottom,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        let rightConstraint = NSLayoutConstraint(item: descriptionLabel,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: contentView,
+                                                 attribute: .right,
+                                                 multiplier: 1,
+                                                 constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: descriptionLabel,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: contentView,
+                                                attribute: .left,
+                                                multiplier: 1,
+                                                constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: descriptionLabel,
+                                                  attribute: .height,
+                                                  relatedBy: .lessThanOrEqual,
+                                                  toItem: nil,
+                                                  attribute: .height,
+                                                  multiplier: 1,
+                                                  constant: 104)
+        contentView.addConstraints([bottomConstraint, rightConstraint, leftConstraint, heightConstraint])
+    }
+    func setUp(description textColor: UIColor, backgroundColor: UIColor) {
+        descriptionLabel.textColor = textColor
+        descriptionLabel.backgroundColor = backgroundColor.withAlphaComponent(0.5)
+    }
+    func configure(photo: IPhoto, indexPath: IndexPath) {
+        guard let sourceType = photo.sourceType else {
+            return
+        }
+        descriptionLabel.text = photo.description
+        showDescriptionLabel(photo.description != nil)
+        switch sourceType {
+        case .image:
+            configure(image: photo.image)
+        case .imageUrl:
+            configure(imageUrl: photo.imageUrl, indexPath: indexPath)
+        case .asset:
+            guard let asset = photo.asset else {
+                return
+            }
+            configure(asset: asset)
+        default:
+            break
+        }
+    }
+    func configure(image: UIImage?) {
+        imageView.image = image
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     func configure(imageUrl: URL?, indexPath: IndexPath) {
         guard let imageUrl = imageUrl else {
@@ -114,6 +188,13 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
             self?.layoutIfNeeded()
         }
     }
+    func showDescriptionLabel(_ isShown: Bool) {
+        guard descriptionLabel.alpha != (isShown ? 1: 0) else { return }
+        let animations: (() -> Void) = {
+            self.descriptionLabel.alpha = isShown ? 1 : 0
+        }
+        UIView.animate(withDuration: 0.15, delay: isShown ? 0.15 : 0, options: .curveEaseInOut, animations: animations, completion: nil)
+    }
 }
 
 // MARK: - Private
@@ -123,7 +204,7 @@ private extension IPhotoBrowserCollectionViewCell {
         let point = gestureRecognizer.translation(in: view)
         switch gestureRecognizer.state {
         case .began:
-            break
+            delegate?.cellImageViewWillBeginDragging(self)
         case .changed:
             view.center.x += point.x
             view.center.y += point.y
@@ -132,6 +213,7 @@ private extension IPhotoBrowserCollectionViewCell {
             let scale: CGFloat = min(1, max(0.85, 1 - (move / 1000)))
             view.transform = CGAffineTransform(scaleX: scale, y: scale)
             delegate?.cellImageViewDidChanging(self)
+            showItemViews(false)
         case .ended, .cancelled:
             let isClosed: Bool
             if abs(originalCenter.y - view.center.y) > 70 {
@@ -144,6 +226,7 @@ private extension IPhotoBrowserCollectionViewCell {
                 UIView.perform(.delete, on: [], options: [], animations: animations) { [weak self] finished in
                     guard let weakSelf = self, finished else { return }
                     self?.delegate?.cellImageViewDidEndCancelAnimation(weakSelf)
+                    self?.showItemViews(true)
                 }
                 isClosed = false
             }
@@ -162,6 +245,14 @@ private extension IPhotoBrowserCollectionViewCell {
         let zoomRect = self.zoomRect(for: scrollView.zoomScale * 3, center: gestureRecognizer.location(in: gestureRecognizer.view))
         scrollView.zoom(to: zoomRect, animated: true)
     }
+    func showItemViews(_ isShown: Bool) {
+        itemViews.filter { $0.alpha != (isShown ? 1 : 0) }.forEach { itemView in
+            let animations: (() -> Void) = {
+                itemView.alpha = isShown ? 1 : 0
+            }
+            UIView.animate(withDuration: 0.15, delay: isShown ? 0.15 : 0, options: .curveEaseInOut, animations: animations, completion: nil)
+        }
+    }
 }
 
 // MARK: - UIScrollViewDelegate
@@ -173,6 +264,7 @@ extension IPhotoBrowserCollectionViewCell: UIScrollViewDelegate {
         let isZooming: Bool = scrollView.minimumZoomScale != scrollView.zoomScale
         panGestureRecognizer.isEnabled = !isZooming
         delegate?.cellImageViewDidZooming(self, isZooming: isZooming)
+        showItemViews(!isZooming)
         guard scrollView.zoomScale > scrollView.minimumZoomScale else {
             scrollView.contentInset = .zero
             return
@@ -228,5 +320,24 @@ extension IPhotoBrowserCollectionViewCell: UIGestureRecognizerDelegate {
         guard let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer, let gestureImageView = gestureRecognizer.view else { return true }
         let velocity = gestureRecognizer.translation(in: gestureImageView)
         return fabs(velocity.y) > fabs(velocity.x)
+    }
+}
+
+final class PaddingLabel: UILabel {
+    var padding: UIEdgeInsets = .zero
+    convenience init(padding: UIEdgeInsets) {
+        self.init()
+        self.padding = padding
+    }
+    var paddingSize: CGSize {
+        return CGSize(width: padding.left + padding.right, height: padding.top + padding.bottom)
+    }
+    override func drawText(in rect: CGRect) {
+        let newRect = UIEdgeInsetsInsetRect(rect, padding)
+        super.drawText(in: newRect)
+    }
+    override var intrinsicContentSize: CGSize {
+        let intrinsicContentSize = super.intrinsicContentSize
+        return CGSize(width: intrinsicContentSize.width + paddingSize.width, height: intrinsicContentSize.height + paddingSize.height)
     }
 }

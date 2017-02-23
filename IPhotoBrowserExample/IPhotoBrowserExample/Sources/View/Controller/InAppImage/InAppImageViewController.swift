@@ -37,6 +37,10 @@ final class InAppImageViewController: UIViewController {
         let storyboard = UIStoryboard(name: "InAppImageViewController", bundle: nil)
         return storyboard.instantiateInitialViewController() as! InAppImageViewController
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = MainViewController.Row.inAppImage.title
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -50,7 +54,10 @@ extension InAppImageViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photoBrowser = IPhotoBrowser(images: images.objects, start: indexPath.item)
+        let photos = images.objects.enumerated()
+            .flatMap { ($0 + 1, $1) }
+            .flatMap { IPhoto(image: $1, title: "\($0)/\(images.count)") }
+        let photoBrowser = IPhotoBrowser(photos: photos, start: indexPath.item)
         photoBrowser.delegate = self
         navigationController?.pushViewController(photoBrowser, animated: true)
     }
