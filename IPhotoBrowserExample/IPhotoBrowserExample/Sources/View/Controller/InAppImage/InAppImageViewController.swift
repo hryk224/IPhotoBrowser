@@ -103,7 +103,7 @@ extension InAppImageViewController: IPhotoBrowserDelegate {
         let indexPath = IndexPath(item: index, section: 0)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
     }
-    func iPhotoBrowserMakePreviousViewScreenshot(_ iPhotoBrowser: IPhotoBrowser) -> UIImage? {
+    func iPhotoBrowserMakeViewScreenshotIfNeeded(_ iPhotoBrowser: IPhotoBrowser) -> UIImage? {
         guard let indexPath = collectionView.indexPathsForSelectedItems?.first else {
             return nil
         }

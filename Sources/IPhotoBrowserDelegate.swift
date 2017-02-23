@@ -14,5 +14,5 @@ import UIKit
     @objc optional func iPhotoBrowserDidCanceledDismiss(_ iPhotoBrowser: IPhotoBrowser)
     @objc optional func iPhotoBrowserDidPop(_ iPhotoBrowser: IPhotoBrowser)
     @objc optional func iPhotoBrowserDidCanceledPop(_ iPhotoBrowser: IPhotoBrowser)
-    @objc optional func iPhotoBrowserMakePreviousViewScreenshot(_ iPhotoBrowser: IPhotoBrowser) -> UIImage?
+    @objc optional func iPhotoBrowserMakeViewScreenshotIfNeeded(_ iPhotoBrowser: IPhotoBrowser) -> UIImage?
 }

@@ -126,9 +126,6 @@ extension IPhotoBrowser: IPhotoBrowserAnimatedTransitionProtocol {
         sourceImageView.contentMode = cell.imageView.contentMode
         sourceImageView.clipsToBounds = true
         sourceImageView.frame = cell.imageView.frame
-        if segueType.isPushed {
-            sourceImageView.frame.origin.y += navigationBarHeight + statusBarHeight
-        }
         return sourceImageView
     }
     public var iPhotoBrowserDestinationImageViewSize: CGSize? {
@@ -273,16 +270,8 @@ private extension IPhotoBrowser {
         let layout = IPhotoBrowserCollectionViewFlowLayout()
         var bounds = containerView.bounds
         layout.minimumLineSpacing = 20
-        if navigationBarHeight > 0 {
-            var size = bounds.size
-            let topInset = navigationBarHeight + statusBarHeight
-            size.height -= topInset
-            layout.itemSize = size
-            layout.sectionInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        } else {
-            layout.itemSize = bounds.size
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
+        layout.itemSize = bounds.size
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         bounds.size.width += layout.minimumLineSpacing
         let collectionView = UICollectionView(frame: bounds, collectionViewLayout: layout)
         collectionView.autoresizingMask = self.flexibleAutoresizing
@@ -317,7 +306,7 @@ private extension IPhotoBrowser {
         guard let navigationController = navigationController else { return }
         guard navigationController.viewControllers.count - 2 >= 0 else { return }
         let sourceVC = navigationController.viewControllers[navigationController.viewControllers.count - 2] as? IPhotoBrowserDelegate
-        let image = sourceVC?.iPhotoBrowserMakePreviousViewScreenshot?(self)
+        let image = sourceVC?.iPhotoBrowserMakeViewScreenshotIfNeeded?(self)
         imageView?.image = image
     }
 }
