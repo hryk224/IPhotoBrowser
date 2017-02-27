@@ -39,6 +39,7 @@ import IPhotoBrowser
 init(images: [UIImage], start index:Int)
 init(imageUrls: [URL], start index:Int)
 init(assets: [PHAsset], start index:Int)
+init(photos: [IPhoto], start index:Int)
 ```
 
 #### IPhotoBrowserDelegate
@@ -46,11 +47,11 @@ init(assets: [PHAsset], start index:Int)
 ```Swift
 func iPhotoBrowser(_ iPhotoBrowser: IPhotoBrowser, didChange index: Int)
 
-// Present/Dismiss
+// Dismiss
 @objc optional func iPhotoBrowserDidDismissing(_ iPhotoBrowser: IPhotoBrowser)
 @objc optional func iPhotoBrowserDidCanceledDismiss(_ iPhotoBrowser: IPhotoBrowser)
 
-// Push/Pop
+// Pop
 @objc optional func iPhotoBrowserDidPop(_ iPhotoBrowser: IPhotoBrowser)
 @objc optional func iPhotoBrowserDidCanceledPop(_ iPhotoBrowser: IPhotoBrowser)
 /// This screenshot is used for pop transitions.
@@ -61,7 +62,7 @@ func iPhotoBrowser(_ iPhotoBrowser: IPhotoBrowser, didChange index: Int)
 ##### Example
 
 ```Swift
-let photoBrowser = IPhotoBrowser(images: images.objects, start: indexPath.item)
+let photoBrowser = IPhotoBrowser(images: images, start: 0)
 photoBrowser.delegate = self
 navigationController?.pushViewController(photoBrowser, animated: true)
 or
@@ -90,10 +91,6 @@ struct IPhoto {
   let title: String?
   let description: String?
 }
-```
-
-```Swift
-init(photos: [IPhoto], start index:Int)
 ```
 
 ## Photos from
