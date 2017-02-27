@@ -40,6 +40,7 @@ final class CameraRollViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         photosRequestAuthorization()
+        title = MainViewController.Row.cameraRoll.title
     }
 }
 
@@ -85,8 +86,9 @@ extension CameraRollViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoBrowser = IPhotoBrowser(assets: photos.map { $0.asset }, start: indexPath.item)
-        photoBrowser.configure(backgroundColor: .white)
         photoBrowser.delegate = self
+        photoBrowser.configure(backgroundColor: .white)
+        photoBrowser.configure(itemColor: .black)
         present(photoBrowser, animated: true, completion: nil)
     }
 }

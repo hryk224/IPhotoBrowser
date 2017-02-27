@@ -8,6 +8,7 @@
 
 import UIKit.UIImage
 import UIKit.UIColor
+import IPhotoBrowser
 
 struct Assets {
     struct Image {
@@ -30,9 +31,34 @@ struct Assets {
         }
         private init() {
             objects = countableRange
-//                .map { "https://github.com/hryk224/IPhotoBrowser/wiki/images/0" + String($0) + ".jpg" }
                 .map { "https://dummyimage.com/200x200/\(UIColor.random.toHexString)&text=" + String($0) }
                 .flatMap { URL(string: $0) }
+        }
+    }
+    struct Photo {
+        static let share: Assets.Photo = Photo()
+        let objects: [IPhoto]
+        private let countableRange: CountableRange<Int> = 1..<36
+        var count: Int {
+            return countableRange.count
+        }
+        private init() {
+            let count = countableRange.count
+            let descriptions: [String] = [
+                "It is a sample string. It is a sample string. It is a sample string. It is a sample string. It is a sample string.",
+                "サンプル文字列です。サンプル文字列です。サンプル文字列です。サンプル文字列です。サンプル文字列です。",
+                "它是一个示例字符串。 它是一个示例字符串。 它是一个示例字符串。 它是一个示例字符串。 它是一个示例字符串。",
+                "Quod est a sample nervo. Quod est a sample nervo. Quod est a sample nervo. Quod est a sample nervo. Quod est a sample nervo.",
+                "Es ist ein Beispielstring. Es ist ein Beispielstring. Es ist ein Beispielstring. Es ist ein Beispielstring. Es ist ein Beispielstring.",
+                "샘플 문자열입니다. 샘플 문자열입니다. 샘플 문자열입니다. 샘플 문자열입니다. 샘플 문자열입니다."
+            ]
+            objects = countableRange.enumerated()
+                .flatMap { ($0 + 1, UIImage(named: String($1))!) }
+                .map {
+                    IPhoto(image: $1,
+                           title: "\($0)/\(count)",
+                        description: descriptions[$0 % descriptions.count])
+            }
         }
     }
 }
