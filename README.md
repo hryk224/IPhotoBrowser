@@ -1,6 +1,6 @@
 # IPhotoBrowser
 
-A simple iOS Instagram photo browser written in Swift.
+A simple iOS photo browser written in Swift.
 
 [![CocoaPods Compatible](http://img.shields.io/cocoapods/v/IPhotoBrowser.svg?style=flat)](http://cocoadocs.org/docsets/IPhotoBrowser)
 [![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
