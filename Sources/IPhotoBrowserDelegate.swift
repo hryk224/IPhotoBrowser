@@ -15,4 +15,5 @@ import UIKit
     @objc optional func iPhotoBrowserDidPop(_ iPhotoBrowser: IPhotoBrowser)
     @objc optional func iPhotoBrowserDidCanceledPop(_ iPhotoBrowser: IPhotoBrowser)
     @objc optional func iPhotoBrowserMakeViewScreenshotIfNeeded(_ iPhotoBrowser: IPhotoBrowser) -> UIImage?
+    @objc optional func iPhotoBrowserTouchRightButton(_ iPhotoBrowser: IPhotoBrowser, selectedItemAt index: Int)
 }

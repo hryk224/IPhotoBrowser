@@ -78,7 +78,7 @@ open class IPhotoBrowser: UIViewController {
         self.modalPresentationCapturesStatusBarAppearance = true
         self.sourceType = .image
     }
-    public convenience init(imageUrls: [URL], start index:Int) {
+    public convenience init(imageUrls: [URL], start index:Int, isHaveRightButton: Bool = false) {
         self.init(nibName: nil, bundle: nil)
         self.imageUrls = imageUrls
         self.index = index
@@ -86,8 +86,9 @@ open class IPhotoBrowser: UIViewController {
         self.modalPresentationStyle = .overCurrentContext
         self.modalPresentationCapturesStatusBarAppearance = true
         self.sourceType = .imageUrl
+        self.isHaveRightButton = isHaveRightButton
     }
-    public convenience init(assets: [PHAsset], start index:Int) {
+    public convenience init(assets: [PHAsset], start index:Int, isHaveRightButton: Bool = false) {
         self.init(nibName: nil, bundle: nil)
         self.assets = assets
         self.index = index
@@ -95,8 +96,9 @@ open class IPhotoBrowser: UIViewController {
         self.modalPresentationStyle = .overCurrentContext
         self.modalPresentationCapturesStatusBarAppearance = true
         self.sourceType = .asset
+        self.isHaveRightButton = isHaveRightButton
     }
-    public convenience init(photos: [IPhoto], start index:Int) {
+    public convenience init(photos: [IPhoto], start index:Int, isHaveRightButton: Bool = false) {
         self.init(nibName: nil, bundle: nil)
         self.photos = photos
         self.index = index
@@ -104,9 +106,11 @@ open class IPhotoBrowser: UIViewController {
         self.modalPresentationStyle = .overCurrentContext
         self.modalPresentationCapturesStatusBarAppearance = true
         self.sourceType = .iPhoto
+        self.isHaveRightButton = isHaveRightButton
     }
     // Private property
     var segueType: SegueType = .pushed
+    fileprivate var isHaveRightButton : Bool = false
     fileprivate var sourceType: IPhotoBrowserSourceType = .image
     fileprivate var backgroundColor: UIColor = .black // Default
     fileprivate var itemColor: UIColor = .white // Default
@@ -130,14 +134,47 @@ open class IPhotoBrowser: UIViewController {
             let navigationBarHeight = UINavigationBar().intrinsicContentSize.height
             let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: navigationBarHeight + statusBarHeight))
             navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationBar.shadowImage = UIImage()
             navigationBar.backgroundColor = .clear
+            navigationBar.shadowImage = UIImage()
+            
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = CGRect(x: 0, y: 0, width: navigationBar.bounds.width, height: navigationBar.bounds.height + statusBarHeight)
+            gradientLayer.zPosition = -1
+            
+            var colors = [CGColor]()
+            var locations = [NSNumber]()
+            let limitNumber = 100
+            for i in 0..<limitNumber {
+                
+                let floatNumber = CGFloat(i) / CGFloat(limitNumber)
+                
+                let color = UIColor(white: 0, alpha: floatNumber).cgColor
+                let location : NSNumber = floatNumber as NSNumber
+                
+                locations.append(location)
+                colors.insert(color, at: 0)
+            }
+            
+            gradientLayer.colors = colors
+            gradientLayer.locations = locations
+            
+            navigationBar.layer.addSublayer(gradientLayer)
             navigationBar.barTintColor = .clear
+            navigationBar.isTranslucent = true
             navigationBar.tintColor = itemColor
             let navigationItem = IPhotoNavigationItem(title: "")
-            let barButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(IPhotoBrowser.dismissAction))
+            let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            leftButton.setImage(#imageLiteral(resourceName: "ic_Cancel"), for: .normal)
+            leftButton.contentHorizontalAlignment = .left
+            leftButton.addTarget(self, action: #selector(IPhotoBrowser.dismissAction), for: .touchUpInside)
+            let barButtonItem = UIBarButtonItem(customView: leftButton)
             navigationItem.leftBarButtonItem = barButtonItem
+            if isHaveRightButton {
+                let rightButton = UIBarButtonItem(image:  #imageLiteral(resourceName: "ic_more_image"), style: .plain, target: self, action: #selector(IPhotoBrowser.touchRightButton(_:)))
+                navigationItem.rightBarButtonItem = rightButton
+            }
             navigationBar.setItems([navigationItem], animated: false)
+            
             navigationItem.tintColor = itemColor
             navigationBar.alpha = 0
             view.addSubview(navigationBar)
@@ -147,6 +184,7 @@ open class IPhotoBrowser: UIViewController {
         setTitle()
         showItemViews(true, delay: 0.3)
     }
+    
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         switch segueType {
@@ -227,7 +265,7 @@ extension IPhotoBrowser: UICollectionViewDelegate, UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IPhotoBrowserCollectionViewCell.identifier, for: indexPath) as! IPhotoBrowserCollectionViewCell
         cell.delegate = self
-        cell.setUp(description: descriptionItemColor.textColor, backgroundColor: descriptionItemColor.backgroundColor)
+        //cell.setUp(description: descriptionItemColor.textColor, backgroundColor: descriptionItemColor.backgroundColor)
         switch sourceType {
         case .image:
             cell.configure(image: images[indexPath.item])
@@ -261,6 +299,10 @@ extension IPhotoBrowser: UICollectionViewDelegate, UICollectionViewDataSource {
         index = currentIndex
         guard segueType.isPushed else { return }
         setScreenshot()
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("abv")
     }
 }
 
@@ -308,6 +350,10 @@ extension IPhotoBrowser: IPhotoBrowserCollectionViewCellDelegate {
         navigationItem.hidesBackButton = isZooming
         showItemViews(!isZooming)
         collectionView.isScrollEnabled = !isZooming
+    }
+    
+    func cellImageToggleItemsView(_ cell: IPhotoBrowserCollectionViewCell, isShow: Bool) {
+        showItemViews(isShow)
     }
 }
 
@@ -417,6 +463,11 @@ private extension IPhotoBrowser {
     }
     dynamic func dismissAction() {
         showItemViews(false)
+        UIApplication.shared.isStatusBarHidden = false
         dismiss(animated: true, completion: nil)
+    }
+    
+    dynamic func touchRightButton(_ sender: Any) {
+        delegate?.iPhotoBrowserTouchRightButton?(self, selectedItemAt: index)
     }
 }

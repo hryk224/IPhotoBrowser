@@ -16,6 +16,7 @@ protocol IPhotoBrowserCollectionViewCellDelegate: class {
     func cellImageViewDidEndDragging(_ cell: IPhotoBrowserCollectionViewCell, isClosed: Bool)
     func cellImageViewDidEndCancelAnimation(_ cell: IPhotoBrowserCollectionViewCell)
     func cellImageViewDidZooming(_ cell: IPhotoBrowserCollectionViewCell, isZooming: Bool)
+    func cellImageToggleItemsView(_ cell: IPhotoBrowserCollectionViewCell, isShow: Bool)
 }
 
 class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
@@ -50,6 +51,10 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
         imageView.addGestureRecognizer(self.panGestureRecognizer)
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(IPhotoBrowserCollectionViewCell.handleGestureImageDoubleTap))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(IPhotoBrowserCollectionViewCell.handleGestureImageSingleTap(_:)))
+        
+        imageView.addGestureRecognizer(singleTapGestureRecognizer)
         imageView.addGestureRecognizer(doubleTapGestureRecognizer)
         return imageView
     }
@@ -83,6 +88,7 @@ class IPhotoBrowserCollectionViewCell: UICollectionViewCell {
     fileprivate let panGestureRecognizer = UIPanGestureRecognizer()
     fileprivate var indexPath: IndexPath?
     fileprivate var itemViews: [UIView] = []
+    fileprivate var isShowItems = true
     weak var delegate: IPhotoBrowserCollectionViewCellDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -237,6 +243,12 @@ private extension IPhotoBrowserCollectionViewCell {
         let ratio = fabs((view.center.y - (originalCenter.y))  / ((originalCenter.y)))
         delegate?.cellImageViewDidDragging(self, ratio: ratio)
     }
+    
+    dynamic func handleGestureImageSingleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        self.isShowItems = self.isShowItems ? false : true
+        delegate?.cellImageToggleItemsView(self, isShow: self.isShowItems)
+    }
+    
     dynamic func handleGestureImageDoubleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         guard scrollView.minimumZoomScale == scrollView.zoomScale else {
             scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
